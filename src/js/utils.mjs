@@ -34,3 +34,10 @@ export function renderListWithTemplate(templateFn, parentElement, list, position
   const htmlStrings = list.map(templateFn);
   parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
 }
+
+export function updateCartCount() {
+  const cart = JSON.parse(localStorage.getItem("so-cart")) || [];
+  const count = cart.length;
+  const countEl = document.getElementById("cart-count");
+  if (countEl) countEl.textContent = count;
+}
