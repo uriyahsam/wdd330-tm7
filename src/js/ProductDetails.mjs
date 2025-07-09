@@ -28,25 +28,25 @@ export default class ProductDetails {
     this.addProductToCart(this.product);
   }
 
-renderProductDetails() {
-  const discount = this.product.FinalPrice < this.product.SuggestedRetailPrice
-    ? Math.round(((this.product.SuggestedRetailPrice - this.product.FinalPrice) / this.product.SuggestedRetailPrice) * 100)
-    : null;
+  renderProductDetails() {
+    const discount = this.product.FinalPrice < this.product.SuggestedRetailPrice
+      ? Math.round(((this.product.SuggestedRetailPrice - this.product.FinalPrice) / this.product.SuggestedRetailPrice) * 100)
+      : null;
 
-  const discountBadge = discount
-    ? `<span class="discount-badge">Save ${discount}%</span>`
-    : "";
+    const discountBadge = discount
+      ? `<span class="discount-badge">Save ${discount}%</span>`
+      : "";
 
-  document.querySelector(".product-detail").innerHTML = `
+    document.querySelector(".product-detail").innerHTML = `
     <h3>${this.product.Name}</h3>
     <img src="${this.product.Image}" alt="${this.product.Name}" />
     ${discountBadge}
-    <p>${this.product.Description}</p>
+    <p>${this.product.DescriptionHtmlSimple}</p>
     <p class="price">
       $${this.product.FinalPrice}
       ${discount ? `<span class="original-price">$${this.product.SuggestedRetailPrice}</span>` : ""}
     </p>
     <button id="addToCart">Add to Cart</button>
   `;
-}
+  }
 }
