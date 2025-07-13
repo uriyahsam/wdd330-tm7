@@ -90,7 +90,7 @@ p {
   margin-top: -1.3em;
 }
 
-.logo--square > div {
+.logo--square>div {
   margin-top: -1.7em;
 }
 
@@ -274,6 +274,7 @@ footer {
   border-radius: 3px;
   margin: 4px 0;
 }
+
 /* Total$ in Cart */
 .original-price {
   text-decoration: line-through;
@@ -323,4 +324,110 @@ footer {
   cursor: pointer;
   color: #d00;
   font-weight: bold;
+}
+
+/* Search bar container */
+.search-form {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: auto;
+  margin-right: 1rem;
+}
+
+/* Search input field */
+.search-form input {
+  padding: 0.4rem 0.6rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  flex: 1;
+  min-width: 200px;
+}
+
+/* Search button */
+.search-form button {
+  padding: 0.4rem 1rem;
+  font-size: 1rem;
+  background-color: #4CAF50;
+  /* nicer green */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.search-form button:hover {
+  background-color: #45a049;
+}
+
+/* Results container styling */
+#results {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+/* individual product card */
+#results .product-card {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  overflow: hidden;
+  text-align: center;
+  background: #fff;
+  transition: box-shadow 0.3s ease;
+}
+
+#results .product-card:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+#results .product-card img {
+  max-width: 100%;
+  height: auto;
+}
+
+#results .product-card a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  padding: 0.5rem;
+}
+
+/* Price styling */
+.product-card__price {
+  text-align: center;
+  color: #2c7a7b;
+  font-weight: bold;
+  margin: 0.5rem 0;
+}
+
+.product-card__price .original-price {
+  text-decoration: line-through;
+  color: #888;
+  font-size: 0.9rem;
+  margin-left: 0.25rem;
+}
+
+/* Remove old absolute positioning */
+.discount-badge {
+  display: inline-block;
+  margin: 0.5rem auto;
+  background-color: #e53e3e;
+  color: white;
+  padding: 0.2rem 0.6rem;
+  font-size: 0.75rem;
+  border-radius: 3px;
+  text-align: center;
+}
+
+/* Center the badge inside the card */
+.product-card a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
