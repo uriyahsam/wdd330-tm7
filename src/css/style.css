@@ -323,3 +323,24 @@ footer {
   color: #d00;
   font-weight: bold;
 }
+
+.category-grid {
+  display: flex;
+  justify-content: center;  /* Center the categories horizontally */
+  gap: 2rem;               /* Space between category items */
+  flex-wrap: wrap;         /* Allow wrapping on smaller screens */
+  margin-top: 1rem;
+}
+
+.category-grid a {
+  text-align: center;
+  text-decoration: none;
+  color: inherit;
+  font-weight: bold;
+}
+
+.category-grid img {
+  display: block;
+  margin: 0 auto 0.5rem;
+}
+
