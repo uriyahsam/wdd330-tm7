@@ -1,23 +1,31 @@
-function convertToJson(res) {
-  if (res.ok) {
-    return res.json();
-  } else {
-    throw new Error("Bad Response");
-  }
-}
+/* eslint-disable no-console */
+const baseURL = import.meta.env.VITE_SERVER_URL;
+console.log("API Base URL:", baseURL);
 
 export default class ProductData {
-  constructor(category) {
-    this.category = category;
-    this.path = `../json/${this.category}.json`;
+  // Fetch products by category
+  async getData(category) {
+    try {
+      const response = await fetch(`${baseURL}products/search/${category}`);
+      if (!response.ok) throw new Error(`Error fetching category: ${category}`);
+      const data = await response.json();
+      return data.Result;
+    } catch (error) {
+      console.error("getData error:", error);
+      return [];
+    }
   }
-  getData() {
-    return fetch(this.path)
-      .then(convertToJson)
-      .then((data) => data);
-  }
+
+  // Fetch single product by ID
   async findProductById(id) {
-    const products = await this.getData();
-    return products.find((item) => item.Id === id);
+    try {
+      const response = await fetch(`${baseURL}product/${id}`);
+      if (!response.ok) throw new Error(`Error fetching product ID: ${id}`);
+      const data = await response.json();
+      return data.Result;
+    } catch (error) {
+      console.error("findProductById error:", error);
+      return null;
+    }
   }
 }
