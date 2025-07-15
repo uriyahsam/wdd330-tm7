@@ -1,14 +1,22 @@
 import ProductData from "./ProductData.mjs";
 import ProductList from "./ProductList.mjs";
-import { updateCartCount } from "./utils.mjs";
-updateCartCount();
+import { updateCartCount, loadHeaderFooter } from "./utils.mjs";
 import Alert from "./Alert.js";
-const alert = new Alert("/json/alerts.json");
-alert.init();
 
-const dataSource = new ProductData("tents");
+(async function () {
+  // Load header & footer first
+  await loadHeaderFooter();
 
-const productListElement = document.querySelector(".product-list"); // Ensure this class exists in your HTML
+  // Update cart badge after header is loaded
+  updateCartCount();
 
-const tentList = new ProductList("tents", dataSource, productListElement);
-tentList.init();
+  // Show alerts
+  const alert = new Alert("/json/alerts.json");
+  alert.init();
+
+  // Render product list
+  const dataSource = new ProductData("tents");
+  const productListElement = document.querySelector(".product-list");
+  const tentList = new ProductList("tents", dataSource, productListElement);
+  tentList.init();
+})();

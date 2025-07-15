@@ -41,3 +41,27 @@ export function updateCartCount() {
   const countEl = document.getElementById("cart-count");
   if (countEl) countEl.textContent = count;
 }
+
+// Fetch the HTML template
+export async function loadTemplate(path) {
+  const res = await fetch(path);
+  return await res.text();
+}
+
+// Render template into target element
+export function renderWithTemplate(template, parentElement, data, callback) {
+  parentElement.innerHTML = template;
+  if (callback) callback(data);
+}
+
+// Load header and footer
+export async function loadHeaderFooter() {
+  const headerHTML = await loadTemplate("/partials/header.html");
+  const footerHTML = await loadTemplate("/partials/footer.html");
+
+  const headerElement = document.querySelector("#main-header");
+  const footerElement = document.querySelector("#main-footer");
+
+  renderWithTemplate(headerHTML, headerElement);
+  renderWithTemplate(footerHTML, footerElement);
+}
