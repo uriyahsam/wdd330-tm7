@@ -39,7 +39,7 @@ export default class ProductDetails {
 
     document.querySelector(".product-detail").innerHTML = `
     <h3>${this.product.Name}</h3>
-    <img src="${this.product.Image}" alt="${this.product.Name}" />
+    <img src="${this.product.Images.PrimaryLarge}" alt="${this.product.Name}" />
     ${discountBadge}
     <p>${this.product.DescriptionHtmlSimple}</p>
     <p class="price">
