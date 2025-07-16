@@ -37,7 +37,19 @@ export function renderListWithTemplate(templateFn, parentElement, list, position
 
 export function updateCartCount() {
   const cart = JSON.parse(localStorage.getItem("so-cart")) || [];
-  const count = cart.length;
+
+  // sum up total quantity
+  const count = cart.reduce((sum, item) => sum + (item.qty || 1), 0);
+
   const countEl = document.getElementById("cart-count");
+  const iconWrapper = document.querySelector(".cart-icon-wrapper");
+
   if (countEl) countEl.textContent = count;
+
+  if (iconWrapper) {
+    iconWrapper.classList.remove("animate"); // reset animation
+    void iconWrapper.offsetWidth;            // force reflow
+    iconWrapper.classList.add("animate");   // trigger animation
+  }
 }
+

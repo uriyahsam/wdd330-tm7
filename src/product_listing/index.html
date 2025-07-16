@@ -7,6 +7,8 @@
     <title>Sleep Outside | Products</title>
     <link rel="stylesheet" href="../css/style.css" />
     <script src="../js/product-listing.js" type="module"></script>
+    <script src="../js/main.js" type="module"></script>
+
 </head>
 
 <body>
@@ -21,7 +23,7 @@
         </form>
 
         <div class="cart">
-            <a href="cart/index.html" class="cart-icon">
+            <a href="../cart/index.html" class="cart-icon">
                 <div class="cart-icon-wrapper">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
                         <path
@@ -46,8 +48,16 @@
         </div>
     </header>
     <main class="divider">
+
+
         <section class="products">
             <h2>Top Products: <span class="title highlight"></span></h2>
+            <label for="sort">Sort by:</label>
+            <select id="sort">
+                <option value="">-- Select --</option>
+                <option value="name">Name (A-Z)</option>
+                <option value="price">Price (Low to High)</option>
+            </select>
             <ul class="product-list"></ul>
         </section>
     </main>

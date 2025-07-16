@@ -17,3 +17,4 @@ if (titleSpan) {
 }
 
 listing.init();
+

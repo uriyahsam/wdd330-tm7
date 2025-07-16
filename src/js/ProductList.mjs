@@ -38,11 +38,29 @@ export default class ProductList {
     this.category = category;
     this.dataSource = dataSource;
     this.listElement = listElement;
+    this.products = []; // cache
   }
 
   async init() {
-    const list = await this.dataSource.getData(this.category);
-    this.renderList(list);
+    this.products = await this.dataSource.getData(this.category);
+    this.renderList(this.products);
+
+    const sortSelect = document.getElementById("sort");
+    if (sortSelect) {
+      sortSelect.addEventListener("change", () => {
+        this.sortAndRender(sortSelect.value);
+      });
+    }
+  }
+
+  sortAndRender(sortBy) {
+    let sorted = [...this.products];
+    if (sortBy === "name") {
+      sorted.sort((a, b) => a.Name.localeCompare(b.Name));
+    } else if (sortBy === "price") {
+      sorted.sort((a, b) => a.FinalPrice - b.FinalPrice);
+    }
+    this.renderList(sorted);
   }
 
   renderList(list) {

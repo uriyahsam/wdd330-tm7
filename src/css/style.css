@@ -470,3 +470,30 @@ footer {
 .category-card span {
   font-weight: bold;
 }
+
+@keyframes cart-bounce {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.3);
+  }
+}
+
+.cart-icon-wrapper.animate {
+  animation: cart-bounce 0.5s ease;
+}
+
+#cart-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  /* stack vertically */
+  gap: 1rem;
+  /* optional: space between items */
+}

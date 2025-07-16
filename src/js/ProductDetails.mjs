@@ -1,4 +1,5 @@
 import { setLocalStorage } from "./utils.mjs";
+import { updateCartCount } from "./utils.mjs";
 
 export default class ProductDetails {
   constructor(productId, dataSource) {
@@ -20,12 +21,26 @@ export default class ProductDetails {
 
   addProductToCart(product) {
     let cart = JSON.parse(localStorage.getItem("so-cart")) || [];
-    cart.push(product);
+
+    // Check if product already exists in the cart
+    const existing = cart.find((item) => item.Id === product.Id);
+
+    if (existing) {
+      // If exists, increment qty
+      existing.qty = (existing.qty || 1) + 1;
+    } else {
+      // Otherwise add new with qty 1
+      product.qty = 1;
+      cart.push(product);
+    }
+
     setLocalStorage("so-cart", cart);
   }
 
+
   addToCart() {
     this.addProductToCart(this.product);
+    updateCartCount();
   }
 
   renderProductDetails() {
