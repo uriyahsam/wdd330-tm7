@@ -14,7 +14,7 @@
       <img src="/images/noun_Tent_2517.svg" alt="tent image for logo" />
       <a href="index.html"> Sleep<span class="highlight">Outside</span></a>
     </div>
-    <form id="searchForm" action="search.html" class="search-form" method="GET">
+    <form id="searchForm" action="search/index.html" class="search-form" method="GET">
       <input type="text" name="q" id="searchInput" placeholder="Search products..." required />
       <button type="submit">Search</button>
     </form>
@@ -60,12 +60,28 @@
       </div>
     </div>
 
-
-    <section class="products">
-      <h2>Top Products</h2>
-      <ul class="product-list"></ul>
-      <script type="module" src="./js/main.js"></script>
+    <section class="categories">
+      <h2>Shop by Category</h2>
+      <div class="category-grid">
+        <a href="product_listing/index.html?category=tents" class="category-card">
+          <img src="/images/categories/category-tents.svg" alt="Tents" />
+          <span>Tents</span>
+        </a>
+        <a href="product_listing/index.html?category=backpacks" class="category-card">
+          <img src="/images/categories/category-backpacks.svg" alt="Backpacks" />
+          <span>Backpacks</span>
+        </a>
+        <a href="product_listing/index.html?category=sleeping-bags" class="category-card">
+          <img src="/images/categories/category-sleepingbags.svg" alt="Sleeping Bags" />
+          <span>Sleeping Bags</span>
+        </a>
+        <a href="product_listing/index.html?category=hammocks" class="category-card">
+          <img src="/images/categories/category-hammocks.svg" alt="Hammocks" />
+          <span>Hammocks</span>
+        </a>
+      </div>
     </section>
+
   </main>
   <footer>
     &copy;2025 ⛺ SleepOutside ⛺ WDD 330 ⛺ BYU-Idaho for BYU-Pathway
@@ -73,6 +89,7 @@
   </footer>
 
 
+  <script type="module" src="./js/main.js"></script>
 
 </body>
 

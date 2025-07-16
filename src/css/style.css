@@ -160,7 +160,6 @@ button {
   display: flex;
   flex-flow: row wrap;
   list-style-type: none;
-  justify-content: center;
 }
 
 .product-list a {
@@ -430,4 +429,44 @@ footer {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.categories {
+  text-align: center;
+  padding: 3rem 1rem;
+}
+
+.category-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.category-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  padding: 1rem;
+  margin-top: 2rem;
+  border-radius: 8px;
+  transition: transform 0.2s ease;
+}
+
+.category-card:hover {
+  transform: scale(1.05);
+}
+
+.category-card img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  margin-bottom: 0.5rem;
+}
+
+.category-card span {
+  font-weight: bold;
 }
