@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     Promise.all(
         categories.map((category) =>
-            fetch(`${baseURL}products/search/${category}`)
+            fetch(`https://wdd330-backend.onrender.com/products/search/${category}`)
                 .then((res) => {
                     if (!res.ok) throw new Error(`Error ${res.status}`);
                     return res.json();
