@@ -26,7 +26,29 @@ function renderCartContents() {
 
   cartFooter?.classList.remove("hide");
 
-  attachRemoveListeners(); // reattach listeners after re-render
+  attachRemoveListeners();
+  attachQuantityButtons();
+
+
+}
+function attachQuantityListeners() {
+  document.querySelectorAll(".quantity-input").forEach((input) => {
+    input.addEventListener("change", () => {
+      const id = input.dataset.id;
+      const newQty = parseInt(input.value);
+      let cart = getLocalStorage("so-cart") || [];
+
+      const index = cart.findIndex((item) => item.Id === id);
+
+      if (index !== -1 && newQty > 0) {
+        cart[index].qty = newQty;
+      }
+
+      setLocalStorage("so-cart", cart);
+      updateCartCount();
+      renderCartContents();
+    });
+  });
 }
 
 function cartItemTemplate(item) {
@@ -37,7 +59,12 @@ function cartItemTemplate(item) {
     </a>
     <a href="#"><h2 class="card__name">${item.Name}</h2></a>
     <p class="cart-card__color">${item.Colors[0].ColorName}</p>
-    <p class="cart-card__quantity">qty: ${item.qty || 1}</p>
+    <div class="quantity-control" data-id="${item.Id}">
+    <button class="qty-btn decrement">–</button>
+    <span class="qty-value">${item.qty || 1}</span>
+    <button class="qty-btn increment">+</button>
+  </div>
+
     <p class="cart-card__price">$${(item.FinalPrice * (item.qty || 1)).toFixed(
     2
   )}</p>
@@ -53,19 +80,40 @@ function attachRemoveListeners() {
 
       const index = cart.findIndex((item) => item.Id === id);
 
-      if (index !== -1) {
-        if (cart[index].qty > 1) {
-          cart[index].qty--; // just decrement quantity
-        } else {
-          cart.splice(index, 1); // remove item entirely
-        }
-      }
+      cart.splice(index, 1);
+
 
       setLocalStorage("so-cart", cart);
       updateCartCount();
       renderCartContents();
     });
   });
+}
+function attachQuantityButtons() {
+  document.querySelectorAll(".quantity-control").forEach((control) => {
+    const id = control.dataset.id;
+
+    control.querySelector(".increment").addEventListener("click", () => {
+      changeQuantity(id, 1);
+    });
+
+    control.querySelector(".decrement").addEventListener("click", () => {
+      changeQuantity(id, -1);
+    });
+  });
+}
+
+function changeQuantity(id, delta) {
+  let cart = getLocalStorage("so-cart") || [];
+  const index = cart.findIndex((item) => item.Id === id);
+
+  if (index !== -1) {
+    cart[index].qty = Math.max(1, (cart[index].qty || 1) + delta);
+  }
+
+  setLocalStorage("so-cart", cart);
+  updateCartCount();
+  renderCartContents();
 }
 
 renderCartContents();
