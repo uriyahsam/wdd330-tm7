@@ -497,3 +497,56 @@ footer {
   gap: 1rem;
   /* optional: space between items */
 }
+
+.quantity-control {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  justify-content: center;
+  margin: 0.5rem 0;
+  font-size: 1rem;
+}
+
+.qty-btn {
+  background: var(--secondary-color);
+  border: none;
+  width: 28px;
+  height: 28px;
+  font-size: 1rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  color: #ffffff;
+  /* or whatever your text color is */
+}
+
+.qty-btn:hover {
+  color: #000;
+  /* slightly darker on hover */
+}
+
+.qty-value {
+  min-width: 20px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.btn-primary {
+  display: inline-block;
+  padding: 0.5em 1em;
+  background: #0077cc;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+  text-align: center;
+  right: 0;
+  top: 0;
+}
+
+.btn-primary:hover {
+  background: #005fa3;
+}
