@@ -88,6 +88,29 @@ export default class CheckoutProcess {
             alert("Please fill in all required fields.");
             return;
         }
+        if (!/^\d{5}$/.test(order.zip)) {
+            alert("ZIP code must be 5 digits.");
+            return;
+        }
+
+        if (!/^\d{16}$/.test(order.cardNumber)) {
+            alert("Card number must be 16 digits.");
+            return;
+        }
+
+        if (!/^\d{3}$/.test(order.code)) {
+            alert("CVV must be 3 digits.");
+            return;
+        }
+
+        // check expiration
+        const expParts = order.expiration.split("/");
+        const expDate = new Date(`20${expParts[1]}`, expParts[0] - 1);
+        if (expDate < new Date()) {
+            alert("Card is expired.");
+            return;
+        }
+
 
         const order = formDataToJSON(formElement);
 
