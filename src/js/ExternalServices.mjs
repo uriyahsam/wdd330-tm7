@@ -14,13 +14,13 @@ export default class ExternalServices {
         // this.path = `../public/json/${this.category}.json`;
     }
     async getData(category) {
-        const response = await fetch(`${baseURL}products/search/${category}`);
+        const response = await fetch(`https://wdd330-backend.onrender.com/products/search/${category}`);
         const data = await convertToJson(response);
 
         return data.Result;
     }
     async findProductById(id) {
-        const response = await fetch(`${baseURL}product/${id}`);
+        const response = await fetch(`https://wdd330-backend.onrender.com/product/${id}`);
         const data = await convertToJson(response);
         // console.log(data.Result);
         return data.Result;
@@ -34,6 +34,6 @@ export default class ExternalServices {
             },
             body: JSON.stringify(payload),
         };
-        return await fetch(`${baseURL}checkout/`, options).then(convertToJson);
+        return await fetch(`https://wdd330-backend.onrender.com/checkout/`, options).then(convertToJson);
     }
 }
