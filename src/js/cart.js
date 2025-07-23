@@ -18,7 +18,7 @@ function renderCartContents() {
   // Calculate and show total
   const total = cartItems.reduce((sum, item) => sum + item.FinalPrice, 0);
   document.querySelector(".cart-total").textContent = `Total: $${total.toFixed(
-    2
+    2,
   )}`;
   cartFooter.classList.remove("hide");
 }
@@ -37,11 +37,11 @@ function cartItemTemplate(item) {
 }
 
 renderCartContents();
-document.querySelectorAll(".remove-item").forEach(btn => {
+document.querySelectorAll(".remove-item").forEach((btn) => {
   btn.addEventListener("click", () => {
     const id = btn.dataset.id;
     let cart = getLocalStorage("so-cart") || [];
-    cart = cart.filter(item => item.Id !== id);
+    cart = cart.filter((item) => item.Id !== id);
     localStorage.setItem("so-cart", JSON.stringify(cart));
     renderCartContents();
   });
