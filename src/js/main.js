@@ -12,3 +12,6 @@ const productListElement = document.querySelector(".product-list"); // Ensure th
 
 const tentList = new ProductList("tents", dataSource, productListElement);
 tentList.init();
+
+import { loadHeaderFooter } from "./utils.mjs";
+loadHeaderFooter();
