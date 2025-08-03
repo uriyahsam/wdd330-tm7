@@ -1,17 +1,15 @@
 import { renderListWithTemplate } from "./utils.mjs";
 
 function productCardTemplate(product) {
-  // checking for discount
   const hasDiscount = product.FinalPrice < product.SuggestedRetailPrice;
   const discountPercent = hasDiscount
     ? Math.round(
-      ((product.SuggestedRetailPrice - product.FinalPrice) /
-        product.SuggestedRetailPrice) *
-      100
-    )
+        ((product.SuggestedRetailPrice - product.FinalPrice) /
+          product.SuggestedRetailPrice) *
+          100
+      )
     : 0;
 
-  // adding badge if discounted
   const discountBadge = hasDiscount
     ? `<span class="discount-badge">Save ${discountPercent}%</span>`
     : "";
@@ -24,10 +22,11 @@ function productCardTemplate(product) {
       <h3 class="card__name">${product.Name}</h3>
       <p class="product-card__price">
         $${product.FinalPrice}
-        ${hasDiscount
-      ? `<span class="original-price">$${product.SuggestedRetailPrice}</span>`
-      : ""
-    }
+        ${
+          hasDiscount
+            ? `<span class="original-price">$${product.SuggestedRetailPrice}</span>`
+            : ""
+        }
       </p>
     </a>
   </li>`;
@@ -51,6 +50,8 @@ export default class ProductList {
         this.sortAndRender(sortSelect.value);
       });
     }
+
+    return this.products; // ✅ Return product list for breadcrumb
   }
 
   sortAndRender(sortBy) {

@@ -550,3 +550,9 @@ footer {
 .btn-primary:hover {
   background: #005fa3;
 }
+
+.breadcrumb {
+  margin: 1rem 1.5rem;
+  font-size: 0.95rem;
+  color: #666;
+}
